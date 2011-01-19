@@ -22,6 +22,7 @@ def view():
         <script type="text/javascript" SRC="/asset/scripts/enhance.js"></script>	
 	<script type='text/javascript' SRC="/asset/scripts/excanvas.js"></script>
 	<script type='text/javascript' SRC="/asset/scripts/jquery.min.js"></script>
+	<script type='text/javascript' SRC="/asset/scripts/jquery.qtip.js"></script>
         <script type='text/javascript' SRC="/asset/scripts/jquery-ui.min.js"></script>
 	<script type='text/javascript' SRC="/asset/scripts/jquery.wysiwyg.js"></script>
         <script type='text/javascript' SRC="/asset/scripts/visualize.jQuery.js"></script>

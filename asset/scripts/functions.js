@@ -76,13 +76,12 @@ $(document).ready(function(){
 		});
 });
 
-function ngajax_start(){
-	alert("ho ho ho");
-	}
 	
-function ngajax(id){
-   links = "/libuser/start_cloud";
-   datas = "id_vm="+id+"";
+function ngajax(jenis,id){
+   if (jenis == 'status'){
+   links = "/ajax/user_status";
+   }
+   datas = "id_user="+id+"";
    $.ajax({
    url: links,
    data: datas,
@@ -90,50 +89,12 @@ function ngajax(id){
    cache: false,	  
    dataType: 'script',
    success: function(data) {
-   $('.pesan').hide().html('<h3>'+data+'</h3>').show('slow',function() {
-      $('.pesan').delay('1500').hide('slow');
-    });   	  
+   $("#title").html(jenis);
+   $("#isi").html(data);
+   $("#user_list").bPopup();
   }
  });
 return false;
 };
 
-function mbuat_full(){
-   form =  $('#buat_full');
-   $.ajax({
-   url: form.attr('action'),
-   data: form.serialize(),
-   type: 'POST',
-   cache: false,	  
-   dataType: 'script',
-   success: function(data) {
-     $("#pesan").html('<h3>'+data+'</h3>');
-     $(".notificationsbox").bPopup();
-  }
- });
-return false;
-};
-
-function mbuat_container(){
-   form =  $('#buat_container');
-   $.ajax({
-   url: form.attr('action'),
-   data: form.serialize(),
-   type: 'POST',
-   cache: false,	  
-   dataType: 'script',
-   success: function(data) {
-     $("#pesan").html('<h3>'+data+'</h3>');
-     $(".notificationsbox").bPopup();
-    }   	  
-  });
-return false;
-};
-
-	$(document).ready(function(){
-	   		$('.ngedit').bind('click', function(){
-		 	 $(".notificationsbox").bPopup();
-		  	 return false
-			});
-		});
 	

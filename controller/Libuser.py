@@ -10,26 +10,28 @@ class info:
       
    @cherrypy.expose
    def checklogin(self,username=None,password=None):
-      user = loader.setting.sanitize(username)
-      pw = loader.setting.sanitize(password)
-      enc_pass = loader.setting.hashing(pw)
-      query = "select * from user where username like \"%s\" and password like \"%s\"" % (user,enc_pass)
-      a = db.query_select(query)
-      if a == None:
-	raise cherrypy.HTTPRedirect('/user/login')
-      elif a[6] == 0:
-	cherrypy.session['id_user'] = a[0]
-	cherrypy.session['username'] = a[1]
-	cherrypy.session['level'] = '0'
-	raise cherrypy.HTTPRedirect('/admin')
-      elif a[6] == 1:
-	cherrypy.session['id_user'] = a[0]
-	cherrypy.session['username'] = a[1]
-	cherrypy.session['level'] = '1'
-	raise cherrypy.HTTPRedirect('/user')
+      if username != '' and password != '': 
+	user = loader.setting.sanitize(username)
+	pw = loader.setting.sanitize(password)
+	enc_pass = loader.setting.hashing(pw)
+	query = "select * from user where username like \"%s\" and password like \"%s\"" % (user,enc_pass)
+	a = db.query_select(query)
+	if a == None:
+	  raise cherrypy.HTTPRedirect('/user/login')
+	elif a[6] == 0:
+	  cherrypy.session['id_user'] = a[0]
+	  cherrypy.session['username'] = a[1]
+	  cherrypy.session['level'] = '0'
+	  raise cherrypy.HTTPRedirect('/admin')
+	elif a[6] == 1:
+	  cherrypy.session['id_user'] = a[0]
+	  cherrypy.session['username'] = a[1]
+	  cherrypy.session['level'] = '1'
+	  raise cherrypy.HTTPRedirect('/user')
+	else:
+	  return query
       else:
-        return query
-
+	 raise cherrypy.HTTPRedirect('/user/login')
    
    @cherrypy.expose
    def logout(self):

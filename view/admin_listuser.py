@@ -11,9 +11,9 @@ def view():
        clas = "<a href=\"#\" class=\"notifypop\"><span class=\"usagetxt greentxt\">Pengguna</span></a>"
        
     if b[10] == 0:
-       stat = "<a href=\"#\" class=\"notifypop\"><span class=\"usagetxt greentxt\">Aktif</span></a>"
+       stat = "<a href=\"#\"  onclick=\"ngajax('status','"+str(b[0])+"')\"><span class=\"usagetxt greentxt\">Aktif</span></a>"
     else :
-       stat = "<a href=\"#\" class=\"notifypop\"><span class=\"usagetxt redtxt\">Di Blok</span></a>"
+       stat = "<a href=\"#\" onclick=\"ngajax('status','"+str(b[0])+"')\"><span class=\"usagetxt redtxt\">Di Blok</span></a>"
     but = "<button class=\"btn\">Edit</button> <button class=\"btn\">Hapus</button>"
       
     data += "<tr><td>"+b[1]+"</td><td>"+b[3]+"</td><td>"+b[4]+"</td><td>"+b[5]+"</td><td>"+clas+"</td><td><button class=\"btn notifypop\">"+str(b[9])+"</button></td><td>"+stat+"</td><td>"+but+"</td></tr>" 
@@ -35,5 +35,15 @@ def view():
 
         </div>
 
+        <div class="notificationsbox" id="user_list">
+        <h4><span id="title"></span></h4>
+        <ul>
+            <li>
+            <p id="isi"></p>
+            </li>
+           
+        </ul>
+        <p class="loadmore"></p>
+    </div>
           </div>
 	 """
